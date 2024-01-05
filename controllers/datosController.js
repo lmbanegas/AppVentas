@@ -3,9 +3,7 @@ const { Pool } = require('pg');
 
 const pool = new Pool({
   connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a.oregon-postgres.render.com/datos_nf4r',
-  ssl: {
-    rejectUnauthorized: false // Necesario si estás usando SSL en la base de datos
-  }
+
 });
 
 const allProducts = async (req, res) => {
