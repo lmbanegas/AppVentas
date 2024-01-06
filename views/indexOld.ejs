@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Negocio  </title>
+  
+  <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+  <%- include('header') %>
+
+
+  <h1>Lista de Artículos</h1>
+
+
+  <form id="pedidoForm" action="/crear-pedido" method="post" enctype="application/x-www-form-urlencoded">
+
+
+    
+
+
+
+    <article class="productos">
+      <% products.forEach(products => { %>
+
+        <div class="card">
+  
+          <div class="card-info">
+            <label for="nombre">
+              <input name="nombre" value="<%= products.name %>" type="hidden"><br>
+              <%= products.name %>          
+
+            </label>
+  
+            <label for="precio">
+              <input name="precio" value="<%= products.price %>" type="hidden" class="price">
+              <p class="price">$<%= products.price %></p>
+            </label>
+          </div>
+  
+          <label for="cantidad">
+            <button type="button" class="operation" data-operation="-">-</button>
+            <input class="cantidad" name="cantidad" type="text" inputmode="numeric" pattern="[0-9]*" value="0">
+            <button type="button" class="operation" data-operation="+">+</button>
+          </label>
+
+<br>
+        </div> <!-- Fin de la tarjeta -->
+
+  
+      <% } %>
+    </article>
+    <button type="submit">Crear pedido</button>
+
+  </form>
+
+
+  <footer>    © 2023  | Todos los derechos reservados  </footer>
+
+</body>
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+  // Agrega clic al formulario (contenedor común)
+  var pedidoForm = document.getElementById('pedidoForm');
+  pedidoForm.addEventListener('click', function (event) {
+    // Verifica si el clic fue en un elemento con la clase 'operation'
+    if (event.target.classList.contains('operation')) {
+      // Obtén la operación del atributo de datos
+      var operation = event.target.dataset.operation;
+
+      // Encuentra el campo de cantidad asociado al botón clicado
+      var cantidadInput = event.target.closest('label').querySelector('.cantidad');
+
+      // Obtén el valor actual del campo de cantidad
+      var currentValue = parseInt(cantidadInput.value) || 0;
+
+      // Realiza la operación correspondiente
+      if (operation === '+') {
+        cantidadInput.value = currentValue + 1;
+      } else if (operation === '-' && currentValue > 0) {
+        cantidadInput.value = currentValue - 1;
+      }
+    }
+  });
+});
+
+</script>
+
+
+</html>

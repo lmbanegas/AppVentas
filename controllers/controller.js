@@ -1,90 +1,24 @@
 exports.getHomePage = (req, res) => {
-  const articulos = [
-    {
-      "nombre": "Actron 400 - Tira de 10",
-      "precio": 450,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Actron 600 - Tira de 10",
-      "precio": 280,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Alikal",
-      "precio": 150,
-      "cantidad": 0,
-    },
-    // Nuevos elementos
-    {
-      "nombre": "Buscapina",
-      "precio": 250,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Diclofenac",
-      "precio": 350,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Anaflex",
-      "precio": 120,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Aspirineta",
-      "precio": 380,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Buscapina Perlas",
-      "precio": 365,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Cafiaspirina",
-      "precio": 290,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Ibuprofeno",
-      "precio": 480,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Migral",
-      "precio": 380,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Sertal",
-      "precio": 669,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Tafirol",
-      "precio": 233,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Uvasal",
-      "precio": 225,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Novalgina",
-      "precio": 655,
-      "cantidad": 0,
-    },
-    {
-      "nombre": "Keterolac 20mg",
-      "precio": 668,
-      "cantidad": 0,
-    }
-  ];
-  
-  res.render('index', { articulos: articulos });
+
+  const { Pool } = require('pg');
+
+
+  const pool = new Pool({
+    connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a.oregon-postgres.render.com/datos_nf4r',
+    ssl: true,
+  });
+
+  try {
+    const query = 'SELECT id, name, price, comment FROM public.articulos ORDER BY name'; 
+    const result = await pool.query(query);
+
+    res.render('index', { resultados: result.rows });
+  } catch (error) {
+    console.error('Error de consulta:', error.message);
+    res.status(500).send('Error de consulta');
+  }
 };
+
 
 
 exports.crearPedido = (req, res) => {

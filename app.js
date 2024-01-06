@@ -2,6 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
+const path = require('path');
+
 
 const app = express();
 const port = 3000;
@@ -9,9 +11,17 @@ const port = 3000;
 // Configurar EJS como motor de plantillas
 app.set('view engine', 'ejs');
 
+app.set('views', [
+  path.join(__dirname, './views'),
+  path.join(__dirname, './views/partials'),
+
+]);
+
+
 // Configuración de la conexión a PostgreSQL
 const pool = new Pool({
   connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a/datos_nf4r',
+  ssl: true,
 
 });
 

@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/home.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
   <title>Detalles del Pedido</title>
 </head>
 <body>
+
+  <%- include('header') %>
+
 
   <h1>Presupuesto - <%=diaFactura %> </h1> 
 
   <br>
 
-  <table>
+  <table class="styled-table">
     <thead>
-      <tr>
+      <tr class="active-row">
         <th>Cantidad</th>
         <th>Detalle</th>
         <th>Precio unitario</th>
@@ -37,63 +43,15 @@
   </table>
   
 
-<button>
+<button style="width: 30%;">
   <a href="/">Volver</a>
+</button> 
+
+<button style="width: 30%;">
+  <a href="/">Imprimir pedido</a>
 </button> 
 
 </body>
 
-<style>
-  body {
-    font-family: "Montserrat", sans-serif;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 80px;
-    flex-direction: column;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-
-  th {
-    background-color: #f2f2f2;
-  }
-
-  .total {
-    font-weight: bold;
-  }
-
-  button {
-      background-color: #5caafc;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-      text-decoration: none;
-      
-    }
-
-    button a {
-      color: aliceblue;
-      text-decoration: none;
-    }
-
-
-  
-</style>
 
 </html>
