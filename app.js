@@ -21,6 +21,7 @@ app.set('views', [
 // Configuración de la conexión a PostgreSQL
 const pool = new Pool({
   connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a/datos_nf4r',
+  
   ssl: true,
 
 });
