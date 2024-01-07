@@ -17,6 +17,8 @@ app.set('views', [
 
 ]);
 
+app.use(express.static('public'));
+
 
 // Configuración de la conexión a PostgreSQL
 const pool = new Pool({
