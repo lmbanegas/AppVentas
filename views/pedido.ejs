@@ -5,18 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/print.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
   <title>Detalles del Pedido</title>
 </head>
 <body>
 
-  <%- include('header') %>
 
 
-  <h1>Presupuesto - <%=diaFactura %> </h1> 
+  <h2>Presupuesto - <%=diaFactura%></h2> 
 
   <br>
-
+<article>
   <table class="styled-table">
     <thead>
       <tr class="active-row">
@@ -43,13 +44,17 @@
   </table>
   
 
-<button style="width: 30%;">
+<button class="print">
   <a href="/">Volver</a>
 </button> 
 
-<button style="width: 30%">
+<br>
+<button class="print">
   <a href="/">Imprimir pedido</a>
 </button> 
+
+</article>
+
 <footer>    © 2023  | Todos los derechos reservados  </footer>
 
 </body>

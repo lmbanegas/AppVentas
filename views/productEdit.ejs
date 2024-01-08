@@ -12,7 +12,10 @@
 <body>
   <%- include('header') %>
 
+  <article>
   <h1>Editar Producto</h1>
+
+  <br>
 
   <div class="addProduct">
   <form action="/products/edit/<%= producto.id %>" method="post">
@@ -22,16 +25,25 @@
     <label for="price">Nuevo Precio:</label>
     <input type="text" id="price" name="price" value="<%= producto.price %>" required>
 
-    <label for="comment">Nuevo Detalle:</label>
-    <input type="text" id="comment" name="comment" value="<%= producto.comment %>" required>
-
     <label for="aumento">Aplicar Aumento:</label>
+    <div class="edit">
+
     <input type="number" id="aumento" name="aumento"> %
+    </div>
+    <br>
+    <button class="last" type="submit">Guardar Cambios</button>
+  </div>
 
-    <button style="width: 100%;" type="submit">Guardar Cambios</button>
+
   </form>
+  
+    <br>
+    <button class="print">
+      <a href="/">Volver</a>
+    </button> 
 
-</div>
+</article>
+
   <footer>    © 2023  | Todos los derechos reservados  </footer>
 
 </body>

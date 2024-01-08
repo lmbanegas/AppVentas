@@ -7,7 +7,7 @@ const pool = new Pool({
   connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a/datos_nf4r',
 });
 
-// // PARA VS
+// // // PARA VS
 // const pool = new Pool({
 //   connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a.oregon-postgres.render.com/datos_nf4r',
 //   ssl: true,
@@ -16,7 +16,7 @@ const pool = new Pool({
 
 const home = async (req, res) => {
   try {
-    const query = 'SELECT id, name, price, comment FROM public.articulos ORDER BY name'; 
+    const query = 'SELECT id, name, price FROM public.articulos ORDER BY name'; 
     const result = await pool.query(query);
 
     res.render('index', { products: result.rows });
@@ -29,7 +29,7 @@ const home = async (req, res) => {
 
 const allProducts = async (req, res) => {
   try {
-    const query = 'SELECT id, name, price, comment FROM public.articulos ORDER BY name'; 
+    const query = 'SELECT id, name, ROUND(price::numeric, 2) as price FROM public.articulos ORDER BY name'; 
     const result = await pool.query(query);
 
     res.render('products', { products: result.rows });
@@ -69,12 +69,12 @@ const addProduct = (req, res) => {
 
 const addProductPost = async (req, res) => {
   try {
-    const { name, price, comment } = req.body;
+    const { name, price } = req.body;
 
     // Insertar el nuevo producto en la base de datos
 
-    const query = 'INSERT INTO public.articulos (name, price, comment) VALUES ($1, $2, $3) RETURNING *';
-    const result = await pool.query(query, [name, price, comment]);
+    const query = 'INSERT INTO public.articulos (name, price) VALUES ($1, $2, $3) RETURNING *';
+    const result = await pool.query(query, [name, price]);
 
     // Redirigir a la página de detalles del nuevo producto
     res.redirect(`/products/detail/${result.rows[0].id}`);
@@ -107,14 +107,17 @@ const detailProductEdit = async (req, res) => {
 const productEdit = async (req, res) => {
   try {
     const id = req.params.id;
-    let { name, price, comment, aumento } = req.body;
+    let { name, price, aumento } = req.body;
 
     if (aumento > 0) {
-      price = price * (1+ (aumento/100));
+      price = (price * (1+ (aumento/100)));
     }
 
-    const query = 'UPDATE public.articulos SET id = $1, name = $2, price = $3, comment = $4 WHERE id = $5 RETURNING *';
-    const result = await pool.query(query, [id, name, price, comment, id]);
+    price = parseFloat(price).toFixed(2);
+
+
+    const query = 'UPDATE public.articulos SET id = $1, name = $2, price = $3 WHERE id = $4 RETURNING *';
+    const result = await pool.query(query, [id, name, price, id]);
 
     res.redirect(`/products/`);
   } catch (error) {
