@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +10,16 @@
 
   <title>Resultados</title>
 </head>
+
 <body>
 
   <%- include('header') %>
 
-  <h1>Todos los productos:</h1>
-  <div class="table-container">
-    <table class="table">
+    <h1>Todos los productos:</h1>
+
+    <table class="styled-table">
       <thead>
-        <tr>
+        <tr class="active-row">
           <th>Nombre</th>
           <th>Precio</th>
           <th>Detalle</th>
@@ -25,20 +27,27 @@
         </tr>
       </thead>
       <tbody>
-        <% products.forEach(products => { %>
+        <% products.forEach(products=> { %>
           <tr>
-            <td><%= products.name %></td>
-            <td>$ <%= products.price %></td>
-            <td><%= products.comment %></td>
+            <td>
+              <%= products.name %>
+            </td>
+            <td>$ <%= products.price %>
+            </td>
+            <td>
+              <%= products.comment %>
+            </td>
             <td><a href="/products/detail/<%= products.id %>" class="edit-link">Editar</a></td>
           </tr>
-        <% }) %>
+          <% }) %>
       </tbody>
     </table>
-  </div>
 
-
-<a href="/products/add"> Agregar nuevo producto</a>
+    <button style="width: 30%;">
+      <a href="/products/add"> Agregar nuevo producto</a>
+    </button>
+    <footer>    © 2023  | Todos los derechos reservados  </footer>
 
 </body>
+
 </html>

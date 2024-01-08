@@ -67,6 +67,15 @@ li:hover::after {
   width: 2rem;
 }
 
+.addProduct form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px;}
+
+  .addProduct form input {
+    text-align: center;
+  }  
 
 
 /* Estilos específicos para pantallas grandes (PC) */

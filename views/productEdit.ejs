@@ -13,6 +13,8 @@
   <%- include('header') %>
 
   <h1>Editar Producto</h1>
+
+  <div class="addProduct">
   <form action="/products/edit/<%= producto.id %>" method="post">
     <label for="name">Nuevo Nombre:</label>
     <input type="text" id="name" name="name" value="<%= producto.name %>" required>
@@ -26,7 +28,11 @@
     <label for="aumento">Aplicar Aumento:</label>
     <input type="number" id="aumento" name="aumento"> %
 
-    <button type="submit">Guardar Cambios</button>
+    <button style="width: 100%;" type="submit">Guardar Cambios</button>
   </form>
+
+</div>
+  <footer>    © 2023  | Todos los derechos reservados  </footer>
+
 </body>
 </html>

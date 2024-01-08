@@ -15,6 +15,9 @@
   <%- include('header') %>
   
   <h1>Agregar Nuevo Producto</h1>
+
+
+  <div class="addProduct">
   <form action="/products/add" method="post">
     <label for="nombre">Nombre:</label>
     <input type="text" id="name" name="name" required>
@@ -31,7 +34,12 @@
     <br>
 
 
-    <button type="submit">Agregar Producto</button>
+    <button style="width: 100%" type="submit">Agregar Producto</button>
   </form>
+
+  </div>
+  <footer>    © 2023  | Todos los derechos reservados  </footer>
+
 </body>
+
 </html>
