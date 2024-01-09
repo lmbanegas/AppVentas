@@ -64,6 +64,10 @@
   .product {
     color: #1e1e1f;
   }
+
+  .product td{
+    width: 15%;
+  }
   
   .product input {
     width: 50px;
