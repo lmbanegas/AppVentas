@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEX/ndn+qBsB9v9Fq4Gx0R4+unBIdx5PbLb4" crossorigin="anonymous">
+
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
   <title>Editar Producto</title>
 
 </head>
@@ -24,6 +27,14 @@
 
     <label for="price">Nuevo Precio:</label>
     <input type="text" id="price" name="price" value="<%= producto.price %>" required>
+
+    <label for="category">Nueva categoría:</label>
+    <select id="category" name="category" class="category" required>
+      <option value="" disabled selected>Seleccione una categoría</option>
+      <option value="Analgesicos">Analgesicos</option>
+      <option value="Cigarrillos">Cigarrillos</option>
+
+    </select>
 
     <label for="aumento">Aplicar Aumento:</label>
     <div class="edit">

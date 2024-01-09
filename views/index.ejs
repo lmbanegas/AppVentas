@@ -8,37 +8,36 @@
   <link rel="stylesheet" href="./home.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
   <title>Negocio</title>
-
-
-
 </head>
 
 <body>
 
   <%- include('header') %>
 
-
   <article>
-  <h1>Crear pedido</h1>
+    <h1>Crear pedido</h1>
 
+    <form id="pedidoForm" action="/crear-pedido" method="post" enctype="application/x-www-form-urlencoded">
 
-  <form id="pedidoForm" action="/crear-pedido" method="post" enctype="application/x-www-form-urlencoded">
-
-    <table  class="styled-table">
+    <!-- Analgésicos -->
+    <table class="styled-table">
       <thead>
-        <tr  class="active-row">
+        <tr class="active-row">
+          <th class="subtitle" colspan="3">Analgésicos y otros</th>
+        </tr>
+        <tr class="active-row">
           <th>Nombre</th>
           <th>Precio</th>
           <th>Cantidad</th>
         </tr>
       </thead>
       <tbody>
-        <% products.forEach(product => { %>
+        <% analgesicos.forEach(product => { %>
           <tr class="product">
             <td>
               <label for="name">
                 <input name="name" value="<%= product.name %>" type="hidden">
-                <%= product.name %>          
+                <%= product.name %>
               </label>
             </td>
             <td>
@@ -59,43 +58,276 @@
       </tbody>
     </table>
 
+    <!-- Encendedores -->
+    <table class="styled-table">
+      <thead>
+        <tr class="active-row">
+          <th class="subtitle" colspan="3">Encendedores</th>
+        </tr>
+        <tr class="active-row">
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% encendedores.forEach(product => { %>
+          <tr class="product">
+            <td>
+              <label for="name">
+                <input name="name" value="<%= product.name %>" type="hidden">
+                <%= product.name %>
+              </label>
+            </td>
+            <td>
+              <label for="price">
+                <input name="price" value="<%= product.price %>" type="hidden" class="price">
+                $<%= product.price%>
+              </label>
+            </td>
+            <td>
+              <label for="cantidad">
+                <button type="button" class="operation" data-operation="-">-</button>
+                <input class="cantidad" name="cantidad" type="text" inputmode="numeric" pattern="[0-9]*" value="0">
+                <button type="button" class="operation" data-operation="+">+</button>
+              </label>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
 
-    <button class="last" role="button" type="submit">Crear pedido</button>
+    <!-- Pegamentos -->
+    <table class="styled-table">
+      <thead>
+        <tr class="active-row">
+          <th class="subtitle" colspan="3">Pegamentos</th>
+        </tr>
+        <tr class="active-row">
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% pegamentos.forEach(product => { %>
+          <tr class="product">
+            <td>
+              <label for="name">
+                <input name="name" value="<%= product.name %>" type="hidden">
+                <%= product.name %>
+              </label>
+            </td>
+            <td>
+              <label for="price">
+                <input name="price" value="<%= product.price %>" type="hidden" class="price">
+                $<%= product.price%>
+              </label>
+            </td>
+            <td>
+              <label for="cantidad">
+                <button type="button" class="operation" data-operation="-">-</button>
+                <input class="cantidad" name="cantidad" type="text" inputmode="numeric" pattern="[0-9]*" value="0">
+                <button type="button" class="operation" data-operation="+">+</button>
+              </label>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
 
-  </form>
+        <!-- Pilas -->
+        <table class="styled-table">
+          <thead>
+            <tr class="active-row">
+              <th class="subtitle" colspan="3">Pilas</th>
+            </tr>
+            <tr class="active-row">
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% pilas.forEach(product => { %>
+              <tr class="product">
+                <td>
+                  <label for="name">
+                    <input name="name" value="<%= product.name %>" type="hidden">
+                    <%= product.name %>
+                  </label>
+                </td>
+                <td>
+                  <label for="price">
+                    <input name="price" value="<%= product.price %>" type="hidden" class="price">
+                    $<%= product.price%>
+                  </label>
+                </td>
+                <td>
+                  <label for="cantidad">
+                    <button type="button" class="operation" data-operation="-">-</button>
+                    <input class="cantidad" name="cantidad" type="text" inputmode="numeric" pattern="[0-9]*" value="0">
+                    <button type="button" class="operation" data-operation="+">+</button>
+                  </label>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+    
+        <!-- Filos -->
+        <table class="styled-table">
+          <thead>
+            <tr class="active-row">
+              <th class="subtitle" colspan="3">Filos</th>
+            </tr>
+            <tr class="active-row">
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% filos.forEach(product => { %>
+              <tr class="product">
+                <td>
+                  <label for="name">
+                    <input name="name" value="<%= product.name %>" type="hidden">
+                    <%= product.name %>
+                  </label>
+                </td>
+                <td>
+                  <label for="price">
+                    <input name="price" value="<%= product.price %>" type="hidden" class="price">
+                    $<%= product.price%>
+                  </label>
+                </td>
+                <td>
+                  <label for="cantidad">
+                    <button type="button" class="operation" data-operation="-">-</button>
+                    <input class="cantidad" name="cantidad" type="text" inputmode="numeric" pattern="[0-9]*" value="0">
+                    <button type="button" class="operation" data-operation="+">+</button>
+                  </label>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+    
+        <!-- Preservativos -->
+        <table class="styled-table">
+          <thead>
+            <tr class="active-row">
+              <th class="subtitle" colspan="3">Preservativos</th>
+            </tr>
+            <tr class="active-row">
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% preservativos.forEach(product => { %>
+              <tr class="product">
+                <td>
+                  <label for="name">
+                    <input name="name" value="<%= product.name %>" type="hidden">
+                    <%= product.name %>
+                  </label>
+                </td>
+                <td>
+                  <label for="price">
+                    <input name="price" value="<%= product.price %>" type="hidden" class="price">
+                    $<%= product.price%>
+                  </label>
+                </td>
+                <td>
+                  <label for="cantidad">
+                    <button type="button" class="operation" data-operation="-">-</button>
+                    <input class="cantidad" name="cantidad" type="text" inputmode="numeric" pattern="[0-9]*" value="0">
+                    <button type="button" class="operation" data-operation="+">+</button>
+                  </label>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
 
-</article>
+                  <!-- Cigarrilos -->
+        <table class="styled-table">
+          <thead>
+            <tr class="active-row">
+              <th class="subtitle" colspan="3">Cigarrillos</th>
+            </tr>
+            <tr class="active-row">
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% cigarrillos.forEach(product => { %>
+              <tr class="product">
+                <td>
+                  <label for="name">
+                    <input name="name" value="<%= product.name %>" type="hidden">
+                    <%= product.name %>
+                  </label>
+                </td>
+                <td>
+                  <label for="price">
+                    <input name="price" value="<%= product.price %>" type="hidden" class="price">
+                    $<%= product.price%>
+                  </label>
+                </td>
+                <td>
+                  <label for="cantidad">
+                    <button type="button" class="operation" data-operation="-">-</button>
+                    <input class="cantidad" name="cantidad" type="text" inputmode="numeric" pattern="[0-9]*" value="0">
+                    <button type="button" class="operation" data-operation="+">+</button>
+                  </label>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
 
-  <footer>    © 2023  | Todos los derechos reservados  </footer>
 
-</body>
+        </table>
 
-<script>document.addEventListener('DOMContentLoaded', function () {
-  // Agrega clic al formulario (contenedor común)
-  var pedidoForm = document.getElementById('pedidoForm');
-  pedidoForm.addEventListener('click', function (event) {
-    // Verifica si el clic fue en un elemento con la clase 'operation'
-    if (event.target.classList.contains('operation')) {
-      // Obtén la operación del atributo de datos
-      var operation = event.target.dataset.operation;
+        <button class="last" role="button" type="submit">Crear pedido</button>
 
-      // Encuentra el campo de cantidad asociado al botón clicado
-      var cantidadInput = event.target.closest('label').querySelector('.cantidad');
+      </form>
+    
+    </article>
+    
+    <%- include('footer') %>
+    
+    </body>
 
-      // Obtén el valor actual del campo de cantidad
-      var currentValue = parseInt(cantidadInput.value) || 0;
-
-      // Realiza la operación correspondiente
-      if (operation === '+') {
-        cantidadInput.value = currentValue + 1;
-      } else if (operation === '-' && currentValue > 0) {
-        cantidadInput.value = currentValue - 1;
-      }
-    }
-  });
-});
-
-</script>
-
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Agrega clic al formulario (contenedor común)
+        var pedidoForm = document.getElementById('pedidoForm');
+        pedidoForm.addEventListener('click', function (event) {
+          // Verifica si el clic fue en un elemento con la clase 'operation'
+          if (event.target.classList.contains('operation')) {
+            // Obtén la operación del atributo de datos
+            var operation = event.target.dataset.operation;
+    
+            // Encuentra el campo de cantidad asociado al botón clicado
+            var cantidadInput = event.target.parentElement.querySelector('.cantidad');
+    
+            // Obtén el valor actual del campo de cantidad
+            var currentValue = parseInt(cantidadInput.value) || 0;
+    
+            // Realiza la operación correspondiente
+            if (operation === '+') {
+              cantidadInput.value = currentValue + 1;
+            } else if (operation === '-' && currentValue > 0) {
+              cantidadInput.value = currentValue - 1;
+            }
+          }
+        });
+      });
+    </script>
 
 </html>

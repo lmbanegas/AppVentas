@@ -5,6 +5,8 @@ const router = express.Router();
 
 //Todos los productos
 router.get('/', datosController.allProducts);
+router.get('/cigarrillos', datosController.cigarrillos);
+
 
 //Detalle de producto
 router.get('/detail/:id', datosController.detail);

@@ -12,12 +12,13 @@
 </head>
 <body>
 
-
+<div id="pdfContent">
 
   <h2>Presupuesto - <%=diaFactura%></h2> 
 
   <br>
-<article>
+
+<article >
   <table class="styled-table">
     <thead>
       <tr class="active-row">
@@ -44,20 +45,34 @@
   </table>
   
 
+</div>
+
+  <button class="print" onclick="imprimirPDF()">Imprimir pedido</button>
+
+  
+  <br>
 <button class="print">
   <a href="/">Volver</a>
 </button> 
-
-<br>
-<button class="print">
-  <a href="/">Imprimir pedido</a>
-</button> 
-
 </article>
 
-<footer>    © 2023  | Todos los derechos reservados  </footer>
 
 </body>
 
 
 </html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
+<script>
+  function imprimirPDF() {
+    const element = document.getElementById("pdfContent");
+
+    html2pdf(element, {
+      margin: 10,
+      filename: 'pedido.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    });
+  }
+</script>
