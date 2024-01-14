@@ -13,9 +13,10 @@
 <body>
 
   <%- include('header') %>
-  
-  <h1>Agregar Nuevo Producto</h1>
+  <br>
+  <h1>Nuevo producto</h1>
 
+  <br>
 
   <div class="addProduct">
   <form action="/products/add" method="post">
@@ -23,7 +24,7 @@
     <input type="text" id="name" name="name" required>
     <br>
     <select id="category" name="category" required>
-      <option value="" disabled selected>Seleccione una categoría</option>
+      <option value="" disabled selected>Categoría</option>
       <option value="Cigarrillos">Cigarrillos</option>
       <option value="Analgesicos">Analgesicos</option>
       <option value="Encendedores">Encendedores</option>
@@ -43,7 +44,7 @@
     <br>
 
 
-    <button style="width: 100%" type="submit">Agregar Producto</button>
+    <button class="last" type="submit">Agregar Producto</button>
   </form>
 
   </div>

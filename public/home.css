@@ -155,6 +155,8 @@
     transform: translateY(2px);
     transition-duration: .35s;
   }
+
+
   
   button.last {
     width: 100%;
@@ -180,18 +182,29 @@
     text-decoration: none;
   }
 
+  input {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  
+  }
+
   .edit {
     margin: 5px;
   }
   .edit input{
+
     width: 50px;
   }
 
   .category {
-    width: 83%;
     text-align: center;
   }
-
+  
+  input[type="number"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
   .edit-link i.fa-pencil-alt {
     margin-right: 5px; /* Añade un espacio entre el ícono y el texto (ajusta según sea necesario) */
     color: #007bff; /* Cambia el color según tu preferencia */

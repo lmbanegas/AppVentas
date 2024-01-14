@@ -1,7 +1,11 @@
 const express = require('express');
 const datosController = require('../controllers/datosController');
+const userValidation = require('../middlewares/userValidation')
+
 
 const router = express.Router();
+router.use(userValidation);
+
 
 //Todos los productos
 router.get('/', datosController.allProducts);
@@ -19,6 +23,9 @@ router.post('/add', datosController.addProductPost);
 
 router.get('/edit/:id', datosController.detailProductEdit);
 router.post('/edit/:id', datosController.productEdit);
+
+//Borrar producto
+router.delete('/edit/:id/delete', datosController.productDelete);
 
 
 module.exports = router;

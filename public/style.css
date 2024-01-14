@@ -14,15 +14,28 @@ body {
 }
 
 
+
 .addProduct form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4px;}
+  padding: 4px;
+}
 
   .addProduct form input {
     text-align: center;
+    height: 30px;
   }  
+
+  select {
+    height: 30px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  
+  }
 
   .subtitle {
     color: #1e1e1f;

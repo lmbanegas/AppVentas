@@ -1,17 +1,23 @@
-// controllers/datosController.js
 const { Pool } = require('pg');
+const { body, validationResult } = require('express-validator');
 
 
-//PARA RENDER
+
+// ------- ***** RENDER ***** ------- /
+
 const pool = new Pool({
   connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a/datos_nf4r',
 });
+// ------- ***** RENDER ***** ------- /
 
-// // // PARA VS
+
+// ------- ***** VS ***** ------- /
+
 // const pool = new Pool({
 //   connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a.oregon-postgres.render.com/datos_nf4r',
 //   ssl: true,
 // });
+// ------- ***** VS ***** ------- /
 
 
 const home = async (req, res) => {
@@ -53,19 +59,46 @@ const home = async (req, res) => {
   }
 };
 
+const loginGet = async (req, res) => {
+  res.render('login')
+};
+
+
+const loginPost = async (req, res) => {
+  try {
+    let errors = validationResult(req);
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Verificar las credenciales en el servidor
+    if (username === 'miguel' && password === 'miguel') {
+      res.cookie('username', username, { maxAge: 24 * 60 * 60 * 1000 });
+      req.session.user = username;
+      res.redirect('/');
+    } else {
+      errors.errors.push({ param: 'general', msg: 'Usuario y/o contraseña incorrectos' });
+      console.log(errors)
+
+      return res.render('login', { errors });
+    }
+  } catch (error) {
+    console.error('Error during login:', error.message);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+};
 
 
 const allProducts = async (req, res) => {
-  try {
-    const query = 'SELECT id, name, ROUND(price::numeric, 2) as price FROM public.articulos ORDER BY name'; 
-    const result = await pool.query(query);
+    try {
+      const query = 'SELECT id, name, ROUND(price::numeric, 2) as price FROM public.articulos ORDER BY name'; 
+      const result = await pool.query(query);
 
-    res.render('products', { products: result.rows });
-  } catch (error) {
-    console.error('Error de consulta:', error.message);
-    res.status(500).send('Error de consulta');
-  }
-};
+      res.render('products', { products: result.rows });
+    } catch (error) {
+      console.error('Error de consulta:', error.message);
+      res.status(500).send('Error de consulta');
+    }
+  };
 
 
 const cigarrillos = async (req, res) => {
@@ -168,6 +201,25 @@ const productEdit = async (req, res) => {
   }
 };
 
+const productDelete = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const query = 'DELETE FROM public.articulos WHERE id = $1';
+
+
+    await pool.query(query, [id]);
+
+    console.log('Query:', query);
+
+
+    res.redirect(`/`);
+  } catch (error) {
+    console.error('Error al editar producto:', error.message);
+    res.status(500).send('Error al editar producto');
+  }
+};
+
 
 
 const crearPedido = (req, res) => {
@@ -207,4 +259,4 @@ console.log(totalCarrito)
   res.render('pedido', { productosSeleccionados:productosSeleccionados, totalCarrito: totalCarrito, diaFactura:diaFactura});
 };
 
-module.exports = {home, allProducts, cigarrillos, detail, addProduct, addProductPost, detailProductEdit, productEdit, crearPedido };
+module.exports = {home,loginGet, loginPost, allProducts, cigarrillos, detail, addProduct, addProductPost, detailProductEdit, productEdit, productDelete, crearPedido };
