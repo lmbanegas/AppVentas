@@ -73,11 +73,15 @@
                         <div class="w-3/4 h-full flex flex-col ml-2 justify-center">
                             <p>Narenda Modi</p>
                             <p>Divine moments from a very special Dwarka visit.</p>
+                            
+
                         </div>
                         <span class="cursor-pointer material-symbols-outlined mr-4 mt-2">more_horiz</span>
                     </div>
                 </div>
             </div>
+
+
 
 
 
@@ -98,5 +102,47 @@
             </div>
         </div>
     </div>
+
+
+    <table class="styled-table">
+        <thead>
+          <tr class="active-row">
+            <th class="subtitle" colspan="3">Analgésicos y otros</th>
+          </tr>
+          <tr class="active-row">
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% resultados.forEach(product => { %>
+            <tr class="product">
+              <td>
+                <label for="name">
+                  <input name="name" value="<%= product.name %>" type="hidden">
+                  <%= product.idPublicacion %>
+                </label>
+              </td>
+              <td>
+                <label for="price">
+                  <input name="price" value="<%= product.price %>" type="hidden" class="price">
+                  $<%= product.texto%>
+                </label>
+              </td>
+              <td>
+                <label for="cantidad">
+                  <button type="button" class="operation" data-operation="-">-</button>
+                  <input class="cantidad" name="cantidad" type="text" inputmode="numeric" pattern="[0-9]*" value="0">
+                  <button type="button" class="operation" data-operation="+">+</button>
+                </label>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+
+
 </body>
 </html>
