@@ -6,7 +6,7 @@ const { body, validationResult } = require('express-validator');
 // ------- ***** RENDER ***** ------- /
 
 const pool = new Pool({
-  connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a/datos_nf4r',
+  connectionString: 'postgresql://uba_4xho_user:qVlqCmQEpXt8OX5YC8qCsVq1h27QzttH@dpg-cqtr7rrv2p9s73ad83h0-a/uba_4xho',
 });
 // ------- ***** RENDER ***** ------- /
 
@@ -14,44 +14,21 @@ const pool = new Pool({
 // ------- ***** VS ***** ------- /
 
 // const pool = new Pool({
-//   connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a.oregon-postgres.render.com/datos_nf4r',
-//   ssl: true,
+//   connectionString: 'postgres://uba_4xho_user:qVlqCmQEpXt8OX5YC8qCsVq1h27QzttH@dpg-cqtr7rrv2p9s73ad83h0-a.oregon-postgres.render.com/uba_4xho',
+//   ssl: false,
 // });
 // ------- ***** VS ***** ------- /
 
-
 const home = async (req, res) => {
   try {
-    const analgesicosQuery = "SELECT id, name, price, category FROM public.articulos WHERE category = 'Analgesicos' ORDER BY name";
-    const resultAnalgesicos = await pool.query(analgesicosQuery);
-
-    const encendedoresQuery = "SELECT id, name, price, category FROM public.articulos WHERE category = 'Encendedores' ORDER BY name";
-    const resultEncendedores = await pool.query(encendedoresQuery);
-
-    const pegamentosQuery = "SELECT id, name, price, category FROM public.articulos WHERE category = 'Pegamentos' ORDER BY name";
-    const resultPegamentos = await pool.query(pegamentosQuery);
-
-    const pilasQuery = "SELECT id, name, price, category FROM public.articulos WHERE category = 'Pilas' ORDER BY name";
-    const resultPilas = await pool.query(pilasQuery);
-
-    const filosQuery = "SELECT id, name, price, category FROM public.articulos WHERE category = 'Filos' ORDER BY name";
-    const resultFilos = await pool.query(filosQuery);
-
-    const preservativosQuery = "SELECT id, name, price, category FROM public.articulos WHERE category = 'Preservativos' ORDER BY name";
-    const resultPreservativos = await pool.query(preservativosQuery);
-
-    const cigarrillosQuery = "SELECT id, name, price, category FROM public.articulos WHERE category = 'Cigarrillos' ORDER BY name";
-    const resultcigarrillos = await pool.query(cigarrillosQuery);
-
+    console.log('Iniciando consulta...');
+    const resultado = "SELECT * FROM public.publicaciones";
+    const resultados = await pool.query(resultado);
+    
+    console.log('Consulta exitosa. Resultados:', resultados.rows);
+    
     res.render('index', {
-      analgesicos: resultAnalgesicos.rows,
-      encendedores: resultEncendedores.rows,
-      pegamentos: resultPegamentos.rows,
-      pilas: resultPilas.rows,
-      filos: resultFilos.rows,
-      preservativos: resultPreservativos.rows,
-      cigarrillos: resultcigarrillos.rows,
-
+      resultados: resultados.rows
     });
   } catch (error) {
     console.error('Error de consulta:', error.message);
@@ -248,13 +225,6 @@ const crearPedido = (req, res) => {
     }
 }
 
-for (let i = 0; i < productosSeleccionados.length; i++) {
-  productosSeleccionados[i].precioTotal = (productosSeleccionados[i].cantidad * productosSeleccionados[i].precio).toFixed(2);
-  totalCarrito += parseFloat(productosSeleccionados[i].precioTotal); 
-}
-
-console.log(productosSeleccionados)
-console.log(totalCarrito)
 
   res.render('pedido', { productosSeleccionados:productosSeleccionados, totalCarrito: totalCarrito, diaFactura:diaFactura});
 };
