@@ -42,7 +42,7 @@ app.use(methodOverride('_method'));
 // ------- ***** RENDER ***** ------- /
 
 const pool = new Pool({
-  connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a/datos_nf4r',
+  connectionString: 'postgresql://uba_4xho_user:qVlqCmQEpXt8OX5YC8qCsVq1h27QzttH@dpg-cqtr7rrv2p9s73ad83h0-a/uba_4xho',
 });
 
 // ------- ***** RENDER ***** ------- /
@@ -52,7 +52,7 @@ const pool = new Pool({
 // ------- ***** VS ***** ------- /
 
 // const pool = new Pool({
-//   connectionString: 'postgres://datos_nf4r_user:F0UCioJs60QYobtLbDY7Xded7VkhYRYy@dpg-cl24k68p2gis7381s7bg-a.oregon-postgres.render.com/datos_nf4r',
+//   connectionString: 'postgresql://uba_4xho_user:qVlqCmQEpXt8OX5YC8qCsVq1h27QzttH@dpg-cqtr7rrv2p9s73ad83h0-a.oregon-postgres.render.com/uba_4xho',
 //   ssl: true,
 // });
 
