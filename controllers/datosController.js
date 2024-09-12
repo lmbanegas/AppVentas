@@ -6,7 +6,7 @@ const { body, validationResult } = require('express-validator');
 // ------- ***** RENDER ***** ------- /
 
 const pool = new Pool({
-  connectionString: 'postgresql://uba_4xho_user:qVlqCmQEpXt8OX5YC8qCsVq1h27QzttH@dpg-cqtr7rrv2p9s73ad83h0-a/uba_4xho',
+  connectionString: 'postgres://avnadmin:AVNS_aG3a1KMG_5SbZLhqNOh@pg-192c8d92-lbanegas93-3975.c.aivencloud.com:20362/defaultdb?sslmode=require',
 });
 // ------- ***** RENDER ***** ------- /
 
