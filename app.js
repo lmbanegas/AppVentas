@@ -42,7 +42,7 @@ app.use(methodOverride('_method'));
 // ------- ***** RENDER ***** ------- /
 
 const pool = new Pool({
-  connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a.oregon-postgres.render.com/datatabasepx',
+  connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a/datatabasepx',
 });
 
 // ------- ***** RENDER ***** ------- /
