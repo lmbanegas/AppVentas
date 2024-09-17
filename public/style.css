@@ -20,7 +20,13 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 4px;
+}
 
+#nuevoPaciente{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4111px;
 }
 
 

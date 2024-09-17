@@ -22,7 +22,7 @@
     <article>
 
       <button class="print">
-        <a href="/products">Volver</a>
+        <a href="/pacientes">Volver</a>
       </button>
 
       <br>
@@ -31,7 +31,7 @@
       <br>
 
       <div class="addProduct">
-        <form action="/products/edit/<%= producto.id %>" method="post">
+        <form action="/pacientes/edit/<%= producto.id %>" method="post">
           <label for="name">Nuevo Nombre:</label>
           <input type="text" id="name" name="name" value="<%= producto.name %>" required>
 
@@ -65,7 +65,7 @@
 
       </form>
 
-      <form action="/products/edit/<%= producto.id%>/delete?_method=DELETE" method="POST">
+      <form action="/pacientes/edit/<%= producto.id%>/delete?_method=DELETE" method="POST">
         <button class="last" style="background-color: #E23636" type="submit">Borrar</button>
       </form>
     </div>

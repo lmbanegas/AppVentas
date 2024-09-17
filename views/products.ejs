@@ -36,22 +36,22 @@
         </tr>
       </thead>
       <tbody>
-        <% products.forEach(products=> { %>
+        <% pacientes.forEach(pacientes=> { %>
           <tr>
             <td>
-              <%= products.name %>
+              <%= pacientes.name %>
             </td>
-            <td>$ <%= products.price %>
+            <td>$ <%= pacientes.price %>
             </td>
 
-            <td><a href="/products/edit/<%= products.id %>" class="edit-link"><i class="far fa-edit"></i></a></td>
+            <td><a href="/pacientes/edit/<%= pacientes.id %>" class="edit-link"><i class="far fa-edit"></i></a></td>
           </tr>
           <% }) %>
       </tbody>
     </table>
 
     <button class="last">
-      <a href="/products/add"> Agregar nuevo producto</a>
+      <a href="/pacientes/add"> Agregar nuevo producto</a>
     </button>
 
   </article>

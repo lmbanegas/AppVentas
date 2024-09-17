@@ -41,9 +41,9 @@ app.use(methodOverride('_method'));
 
 // ------- ***** RENDER ***** ------- /
 
-const pool = new Pool({
-  connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a/datatabasepx',
-});
+// const pool = new Pool({
+//   connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a/datatabasepx',
+// });
 
 // ------- ***** RENDER ***** ------- /
 
@@ -52,10 +52,10 @@ const pool = new Pool({
 // ------- ***** VS ***** ------- /
 
 
-// const pool = new Pool({
-//   connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a.oregon-postgres.render.com/datatabasepx',
-//   ssl: true,
-// });
+const pool = new Pool({
+  connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a.oregon-postgres.render.com/datatabasepx',
+  ssl: true,
+});
 
 // ------- ***** VS ***** ------- /
 
@@ -67,11 +67,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Rutas y controladores
 const indexRoute = require('./routes/index');
-const productsRoute = require('./routes/productsRouter');
+const pacientesRoute = require('./routes/pacientesRouter');
 
 // Rutas
 app.use('/', indexRoute);
-app.use('/products', productsRoute); 
+app.use('/pacientes', pacientesRoute); 
 
 
 // Manejar errores 404

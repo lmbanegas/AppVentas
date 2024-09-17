@@ -5,18 +5,18 @@ const { body, validationResult } = require('express-validator');
 
 // ------- ***** RENDER ***** ------- /
 
-const pool = new Pool({
-  connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a/datatabasepx',
-});
+// const pool = new Pool({
+//   connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a/datatabasepx',
+// });
 // ------- ***** RENDER ***** ------- /
 
 
 // ------- ***** VS ***** ------- /
 
-// const pool = new Pool({
-//   connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a.oregon-postgres.render.com/datatabasepx',
-//   ssl: false,
-// });
+const pool = new Pool({
+  connectionString: 'postgresql://datatabasepx_user:aQ03haJ4FmjHl4yVQDwAp13zrb8PTrPN@dpg-crk81d3qf0us73df2u8g-a.oregon-postgres.render.com/datatabasepx',
+  ssl: false,
+});
 // ------- ***** VS ***** ------- /
 
 const home = async (req, res) => {
@@ -35,6 +35,7 @@ const home = async (req, res) => {
     res.status(500).send('Error de consulta22');
   }
 };
+
 
 const loginGet = async (req, res) => {
   res.render('login')
@@ -65,12 +66,12 @@ const loginPost = async (req, res) => {
 };
 
 
-const allProducts = async (req, res) => {
+const allpacientes = async (req, res) => {
     try {
       const query = 'SELECT * FROM public.pacientes ORDER BY name'; 
       const result = await pool.query(query);
 
-      res.render('products', { products: result.rows });
+      res.render('pacientes', { pacientes: result.rows });
     } catch (error) {
       console.error('Error de consulta:', error.message);
       res.status(500).send('Error de consulta');
@@ -116,7 +117,7 @@ const addProductPost = async (req, res) => {
     const result = await pool.query(query, [name, price, category]);
 
     // Redirigir a la página de detalles del nuevo producto
-    res.redirect(`/products/`);
+    res.redirect(`/pacientes/`);
   } catch (error) {
     console.error('Error al agregar producto:', error.message);
     res.status(500).send('Error al agregar producto');
@@ -159,7 +160,7 @@ const productEdit = async (req, res) => {
     const query = 'UPDATE public.articulos SET name = $1, price = $2, category = $3 WHERE id = $4 RETURNING *';
     const result = await pool.query(query, [name, price, category, id]);
 
-    res.redirect(`/products/`);
+    res.redirect(`/pacientes/`);
   } catch (error) {
     console.error('Error al editar producto:', error.message);
     res.status(500).send('Error al editar producto');
@@ -214,7 +215,34 @@ const crearPedido = (req, res) => {
 }
 
 
+
+
+
   res.render('pedido', { productosSeleccionados:productosSeleccionados, totalCarrito: totalCarrito, diaFactura:diaFactura});
 };
 
-module.exports = {home,loginGet, loginPost, allProducts, detail, addProduct, addProductPost, detailProductEdit, productEdit, productDelete, crearPedido };
+const nuevoPaciente = (req, res) => {
+  res.render('nuevoPaciente');
+};
+
+
+const nuevoPacientePost = async (req, res) => {
+  try {
+    const { name, price, category } = req.body;
+
+    // Insertar el nuevo producto en la base de datos
+
+    const query = 'INSERT INTO public.articulos (name, price, CATEGORY) VALUES ($1, $2, $3) RETURNING *';
+    const result = await pool.query(query, [name, price, category]);
+
+    // Redirigir a la página de detalles del nuevo producto
+    res.redirect(`/pacientes/`);
+  } catch (error) {
+    console.error('Error al agregar producto:', error.message);
+    res.status(500).send('Error al agregar producto');
+  }
+};
+
+
+
+module.exports = {home,loginGet, loginPost, allpacientes, detail, addProduct, addProductPost, detailProductEdit, productEdit, productDelete, crearPedido, nuevoPaciente, nuevoPacientePost };
